@@ -3,7 +3,7 @@ import { headers } from 'next/headers';
 import rfqData from './rfq.json';
 import { Rfq } from './types';
 
-export let data: Rfq[] = rfqData;
+let data: Rfq[] = rfqData;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
