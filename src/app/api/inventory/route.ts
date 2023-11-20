@@ -3,7 +3,7 @@ import { headers } from 'next/headers';
 import inventoryData from './inventory.json';
 import { InventoryItem } from './types';
 
-let data: InventoryItem[] = inventoryData;
+export let data: InventoryItem[] = inventoryData;
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('id');
