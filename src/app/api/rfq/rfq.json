@@ -2,7 +2,7 @@
   {
     "id": 1,
     "customer": "John Doe",
-    "requestDate": "2023-11-20T06:22:27.545Z",
+    "requestDate": "2023-11-19T06:22:27.545Z",
     "itemsRequested": [
       {
         "item": {
@@ -31,6 +31,36 @@
           "price": 300,
           "quantity": 30,
           "leadTime": 30
+        },
+        "quantity": 1
+      },
+      {
+        "item": {
+          "id": 4,
+          "name": "Metal D",
+          "price": 400,
+          "quantity": 40,
+          "leadTime": 40
+        },
+        "quantity": 1
+      },
+      {
+        "item": {
+          "id": 5,
+          "name": "Metal E",
+          "price": 500,
+          "quantity": 50,
+          "leadTime": 50
+        },
+        "quantity": 1000
+      },
+      {
+        "item": {
+          "id": 6,
+          "name": "Metal G",
+          "price": 600,
+          "quantity": 60,
+          "leadTime": 60
         },
         "quantity": 1
       }
@@ -76,7 +106,7 @@
   {
     "id": 3,
     "customer": "John Doe 3",
-    "requestDate": "2023-11-20T06:22:27.545Z",
+    "requestDate": "2023-11-21T06:22:27.545Z",
     "itemsRequested": [
       {
         "item": {
@@ -150,7 +180,7 @@
   {
     "id": 5,
     "customer": "John Doe 5",
-    "requestDate": "2023-11-20T06:22:27.545Z",
+    "requestDate": "2023-11-04T06:22:27.545Z",
     "itemsRequested": [
       {
         "item": {

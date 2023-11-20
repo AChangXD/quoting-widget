@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/ui/ui-theme-provider';
+import RfqContextProvider from '@/components/rfq/rfq-context-provider';
 
 const fontSans = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -30,7 +31,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <RfqContextProvider>{children}</RfqContextProvider>
         </ThemeProvider>
       </body>
     </html>
