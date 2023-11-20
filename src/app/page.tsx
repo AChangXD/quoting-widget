@@ -37,7 +37,6 @@ export default async function Home() {
       <div className="flex w-full md:w-1/2 h-full flex-col items-center gap-5 p-5">
         {/* Header/Rfq Selection: */}
         <div className="flex w-full flex-col items-center ">
-          <span className="py-5 text-lg">RFQs</span>
           <Separator />
           <ScrollArea className="w-full">
             <div className="flex flex-row w-full gap-5 pt-3 pb-3 overflow-scroll">

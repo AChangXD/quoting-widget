@@ -5,7 +5,7 @@ export default function Edit({
   ...props
 }: {
   className?: string;
-  props?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+  props?: React.HTMLAttributes<HTMLButtonElement>;
 }) {
   return (
     <svg

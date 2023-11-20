@@ -22,11 +22,14 @@ import { Popover, PopoverContent } from '../ui/popover';
 import { PopoverTrigger } from '@radix-ui/react-popover';
 import { Rfq } from '@/app/api/rfq/types';
 import { Quote } from '@/app/api/quotes/types';
+import { Button } from '../ui/button';
+import Cross from '@/lib/icons/cross';
 
 export type QuoteFormProps = {
   inventory: InventoryItem[];
+  onClose?: () => void;
 };
-export default function QuoteForm({ inventory }: QuoteFormProps) {
+export default function QuoteForm({ inventory, onClose }: QuoteFormProps) {
   /* -------------------------------------------------------------------------- */
   /*                                    Hooks                                   */
   /* -------------------------------------------------------------------------- */
@@ -38,10 +41,14 @@ export default function QuoteForm({ inventory }: QuoteFormProps) {
   /* -------------------------------------------------------------------------- */
   const [quote, setQuote] = useState<Quote | undefined>(undefined);
 
+  // Order details:
+  const [totalDollarAmount, setTotalDollarAmount] = useState(0);
+  const [longestLeadTime, setLongestLeadTime] = useState(0);
+
   /* -------------------------------------------------------------------------- */
   /*                                   Effects                                  */
   /* -------------------------------------------------------------------------- */
-
+  // Convert RFQ to Quote:
   useEffect(() => {
     if (rfqToCreateQuoteFor) {
       setQuote({
@@ -73,29 +80,55 @@ export default function QuoteForm({ inventory }: QuoteFormProps) {
           };
         }),
       });
+    } else {
+      setQuote(undefined);
     }
   }, [rfqToCreateQuoteFor]);
+
+  // Calculate order details:
+  useEffect(() => {
+    if (quote) {
+      let totalDollarAmount = 0;
+      let longestLeadTime = 0;
+
+      quote.itemsQuoted.forEach((itemQuoted) => {
+        totalDollarAmount += itemQuoted.price * itemQuoted.quantity;
+        if (itemQuoted.leadTime > longestLeadTime) {
+          longestLeadTime = itemQuoted.leadTime;
+        }
+      });
+      setTotalDollarAmount(totalDollarAmount);
+      setLongestLeadTime(longestLeadTime);
+    }
+  }, [quote]);
   /* -------------------------------------------------------------------------- */
   /*                                 JSX Return                                 */
   /* -------------------------------------------------------------------------- */
   return !rfqToCreateQuoteFor ? (
     <div className="w-full h-full flex flex-row justify-center items-center">
-      <span>Select A RFQ From The Left To Create A Quote</span>
+      <span>Select A RFQ To Create A Quote</span>
     </div>
   ) : (
     <>
-      {/* Header */}
-      <div className="flex w-full flex-col items-center ">
-        <span className="py-5 text-lg">Quote Creation</span>
-        <Separator />
-      </div>
-      <Card className="flex flex-col w-full h-full gap-3 relative">
+      <Card className="flex flex-col w-full h-full gap-3 relative overflow-hidden">
         <CardHeader>
-          <CardTitle>Customer: {rfqToCreateQuoteFor.customer}</CardTitle>
+          <CardTitle className="flex flex-row justify-between items-center w-full">
+            Customer: {rfqToCreateQuoteFor.customer}
+            <Button
+              variant="ghost"
+              className="hidden md:block"
+              onClick={() => {
+                setRfqToCreateQuoteFor(undefined);
+                setQuote(undefined);
+              }}
+            >
+              <Cross />
+            </Button>
+          </CardTitle>
         </CardHeader>
         <Separator />
 
-        <CardContent className="w-full h-full">
+        <CardContent className="w-full h-full pb-36 overflow-y-auto">
           {quote?.itemsQuoted.map((itemQuoted, index) => {
             const currentInventoryLevel = inventory.find(
               (item) => item.id === itemQuoted.item.id
@@ -246,8 +279,59 @@ export default function QuoteForm({ inventory }: QuoteFormProps) {
           })}
         </CardContent>
         {/* Summary */}
-        <div className="absolute bottom-0 flex flex-col items-center w-full p-3">
-          <span>Total Cost</span>
+        <div className="absolute bottom-0 flex flex-col items-center w-full p-5">
+          <div className="flex flex-row justify-end w-full pb-4">
+            <div className="flex flex-col w-2/5">
+              <div className="flex flex-row w-full justify-between">
+                <span>Total</span>
+                <span>
+                  {new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                  }).format(totalDollarAmount)}
+                </span>
+              </div>
+              <div className="flex flex-row w-full justify-between">
+                <span>Lead Time</span>
+                <span>{longestLeadTime} days</span>
+              </div>
+            </div>
+          </div>
+          <Button
+            className="w-full"
+            onClick={async () => {
+              console.log(`${window.location.origin}/api/quote`);
+              try {
+                const res = await fetch(
+                  `${window.location.origin}/api/quotes`,
+                  {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      quote: quote,
+                    }),
+                  }
+                );
+                if (res.ok) {
+                  console.log(res);
+                  setRfqToCreateQuoteFor(undefined);
+                  setQuote(undefined);
+                  if (onClose) {
+                    onClose();
+                  }
+                } else {
+                  console.log('Failed to create quote:');
+                }
+              } catch (e) {
+                console.log(e);
+                // !Need to add error handling.
+              }
+            }}
+          >
+            Generate Quote
+          </Button>
         </div>
       </Card>
     </>

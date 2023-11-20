@@ -14,6 +14,8 @@ import { Switch } from '../ui/switch';
 import { Progress } from '../ui/progress';
 import { InventoryItem } from '@/app/api/inventory/types';
 import { cn } from '@/lib/utils';
+import { Sheet, SheetContent } from '../ui/sheet';
+import QuoteForm from './quote-form';
 
 export type QuoteWidgetProps = {
   inventory: InventoryItem[];
@@ -30,6 +32,8 @@ export default function QuoteWidget({ inventory }: QuoteWidgetProps) {
   const [selectedItems, setSelectedItems] = useState<
     { itemId: number; selected: boolean }[]
   >([]);
+
+  const [showMobileQuoteForm, setShowMobileQuoteForm] = useState(false);
   /* -------------------------------------------------------------------------- */
   /*                                   Effects                                  */
   /* -------------------------------------------------------------------------- */
@@ -52,6 +56,23 @@ export default function QuoteWidget({ inventory }: QuoteWidgetProps) {
     <Card className="flex flex-col w-full h-full overflow-hidden relative">
       {selectedRfq && (
         <>
+          <Sheet
+            open={showMobileQuoteForm}
+            onOpenChange={(newState) => setShowMobileQuoteForm(newState)}
+          >
+            <SheetContent
+              side="bottom"
+              className="h-full w-full"
+            >
+              <QuoteForm
+                inventory={inventory}
+                onClose={() => {
+                  setShowMobileQuoteForm(false);
+                }}
+              />
+            </SheetContent>
+          </Sheet>
+
           <CardHeader>
             <CardTitle>Quote Request From {selectedRfq?.customer}</CardTitle>
             <CardDescription>
@@ -180,7 +201,27 @@ export default function QuoteWidget({ inventory }: QuoteWidgetProps) {
 
           <div className="absolute bottom-0 w-full flex flex-row just pb-5 px-3">
             <Button
-              className="w-full"
+              className="w-full md:hidden"
+              onClick={() => {
+                setShowMobileQuoteForm(true);
+                setRfqToCreateQuoteFor({
+                  ...selectedRfq,
+                  itemsRequested: selectedRfq.itemsRequested.filter(
+                    (itemRequested) => {
+                      return selectedItems.find(
+                        (item) =>
+                          item.itemId === itemRequested.item.id && item.selected
+                      );
+                    }
+                  ),
+                });
+              }}
+            >
+              Start Quote
+            </Button>
+
+            <Button
+              className="w-full hidden md:block"
               onClick={() => {
                 setRfqToCreateQuoteFor({
                   ...selectedRfq,
