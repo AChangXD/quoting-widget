@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Metal A",
+    "price": 100,
+    "quantity": 10,
+    "leadTime": 10
+  },
+  {
+    "id": 2,
+    "name": "Metal B",
+    "price": 200,
+    "quantity": 20,
+    "leadTime": 20
+  },
+  {
+    "id": 3,
+    "name": "Metal C",
+    "price": 300,
+    "quantity": 30,
+    "leadTime": 30
+  },
+  {
+    "id": 4,
+    "name": "Metal D",
+    "price": 400,
+    "quantity": 40,
+    "leadTime": 40
+  },
+  {
+    "id": 5,
+    "name": "Metal E",
+    "price": 500,
+    "quantity": 50,
+    "leadTime": 50
+  },
+  {
+    "id": 6,
+    "name": "Metal F",
+    "price": 600,
+    "quantity": 60,
+    "leadTime": 60
+  },
+  {
+    "id": 7,
+    "name": "Metal G",
+    "price": 700,
+    "quantity": 70,
+    "leadTime": 70
+  },
+  {
+    "id": 8,
+    "name": "Metal H",
+    "price": 800,
+    "quantity": 80,
+    "leadTime": 80
+  },
+  {
+    "id": 9,
+    "name": "Metal I",
+    "price": 900,
+    "quantity": 90,
+    "leadTime": 90
+  },
+  {
+    "id": 10,
+    "name": "Metal J",
+    "price": 1000,
+    "quantity": 100,
+    "leadTime": 100
+  }
+]

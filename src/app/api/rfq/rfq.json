@@ -1,0 +1,187 @@
+[
+  {
+    "id": 1,
+    "customer": "John Doe",
+    "requestDate": "2023-11-20T06:22:27.545Z",
+    "itemsRequested": [
+      {
+        "item": {
+          "id": 1,
+          "name": "Metal A",
+          "price": 100,
+          "quantity": 10,
+          "leadTime": 10
+        },
+        "quantity": 23
+      },
+      {
+        "item": {
+          "id": 2,
+          "name": "Metal B",
+          "price": 200,
+          "quantity": 20,
+          "leadTime": 20
+        },
+        "quantity": 12
+      },
+      {
+        "item": {
+          "id": 3,
+          "name": "Metal C",
+          "price": 300,
+          "quantity": 30,
+          "leadTime": 30
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "customer": "Jane Doe 2",
+    "requestDate": "2023-11-20T06:22:27.545Z",
+    "itemsRequested": [
+      {
+        "item": {
+          "id": 1,
+          "name": "Metal A",
+          "price": 100,
+          "quantity": 10,
+          "leadTime": 10
+        },
+        "quantity": 2
+      },
+      {
+        "item": {
+          "id": 2,
+          "name": "Metal B",
+          "price": 200,
+          "quantity": 20,
+          "leadTime": 20
+        },
+        "quantity": 4
+      },
+      {
+        "item": {
+          "id": 3,
+          "name": "Metal C",
+          "price": 300,
+          "quantity": 30,
+          "leadTime": 30
+        },
+        "quantity": 1000
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "customer": "John Doe 3",
+    "requestDate": "2023-11-20T06:22:27.545Z",
+    "itemsRequested": [
+      {
+        "item": {
+          "id": 1,
+          "name": "Metal A",
+          "price": 100,
+          "quantity": 10,
+          "leadTime": 10
+        },
+        "quantity": 333
+      },
+      {
+        "item": {
+          "id": 2,
+          "name": "Metal B",
+          "price": 200,
+          "quantity": 20,
+          "leadTime": 20
+        },
+        "quantity": 1
+      },
+      {
+        "item": {
+          "id": 3,
+          "name": "Metal C",
+          "price": 300,
+          "quantity": 30,
+          "leadTime": 30
+        },
+        "quantity": 12
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "customer": "John Doe 4",
+    "requestDate": "2023-11-20T06:22:27.545Z",
+    "itemsRequested": [
+      {
+        "item": {
+          "id": 1,
+          "name": "Metal A",
+          "price": 100,
+          "quantity": 10,
+          "leadTime": 10
+        },
+        "quantity": 1
+      },
+      {
+        "item": {
+          "id": 2,
+          "name": "Metal B",
+          "price": 200,
+          "quantity": 20,
+          "leadTime": 20
+        },
+        "quantity": 1
+      },
+      {
+        "item": {
+          "id": 3,
+          "name": "Metal C",
+          "price": 300,
+          "quantity": 30,
+          "leadTime": 30
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "customer": "John Doe 5",
+    "requestDate": "2023-11-20T06:22:27.545Z",
+    "itemsRequested": [
+      {
+        "item": {
+          "id": 1,
+          "name": "Metal A",
+          "price": 100,
+          "quantity": 10,
+          "leadTime": 10
+        },
+        "quantity": 1
+      },
+      {
+        "item": {
+          "id": 2,
+          "name": "Metal B",
+          "price": 200,
+          "quantity": 20,
+          "leadTime": 20
+        },
+        "quantity": 1
+      },
+      {
+        "item": {
+          "id": 3,
+          "name": "Metal C",
+          "price": 300,
+          "quantity": 30,
+          "leadTime": 30
+        },
+        "quantity": 1
+      }
+    ]
+  }
+]
