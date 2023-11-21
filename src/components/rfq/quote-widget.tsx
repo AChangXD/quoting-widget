@@ -54,7 +54,7 @@ export default function QuoteWidget({ inventory }: QuoteWidgetProps) {
   /* -------------------------------------------------------------------------- */
   return (
     <Card className="flex flex-col w-full h-full overflow-hidden relative">
-      {selectedRfq && (
+      {selectedRfq ? (
         <>
           <Sheet
             open={showMobileQuoteForm}
@@ -240,6 +240,10 @@ export default function QuoteWidget({ inventory }: QuoteWidgetProps) {
             </Button>
           </div>
         </>
+      ) : (
+        <div className="flex flex-row h-full w-full items-center justify-center">
+          <span>Select A RFQ To Get Started</span>
+        </div>
       )}
     </Card>
   );
